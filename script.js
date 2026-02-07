@@ -61,5 +61,26 @@ features.forEach(f => {
     grid.appendChild(card);
 });
 
+// Select all links that have an href starting with #
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        // 1. Prevent the default anchor behavior (stops URL from changing)
+        e.preventDefault();
+
+        // 2. Get the target ID from the href (e.g., "#features")
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        // 3. Manually scroll to the section
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
 // Re-run Lucide for dynamic elements
 lucide.createIcons();
